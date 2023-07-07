@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,9 +11,11 @@ public class Main {
         System.out.println("4.- Piramide");
         System.out.println("5.- Cubo");
         System.out.println("6.- Esfera");
-        System.out.println("7.- Salir");
+        System.out.println("7.- Ver registro");
+        System.out.println("8.- Salir");
         System.out.println();
     }
+    private static List<Figura> registroFiguras = new ArrayList<>();
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -34,6 +37,7 @@ public class Main {
                         puntosTriangulo.add(punto);
                     }
                     Triangulo triangulo = new Triangulo(puntosTriangulo);
+                    registroFiguras.add(triangulo);
                     System.out.println("Area del Triangulo: " + triangulo.calcularArea());
                     System.out.println("Perimetro del Triangulo: " + triangulo.calcularPerimetro());
                     System.out.println();
@@ -50,6 +54,7 @@ public class Main {
                     Punto punto1 = new Punto(x1, y1);
                     Punto punto2 = new Punto(x2, y2);
                     Cuadrado cuadrado = new Cuadrado(punto1, punto2);
+                    registroFiguras.add(cuadrado);
 
                     System.out.println("Area del Cuadrado: " + cuadrado.calcularArea());
                     System.out.println("Perimetro del Cuadrado: " + cuadrado.calcularPerimetro());
@@ -65,6 +70,7 @@ public class Main {
                     scanner.nextLine();
                     Punto centro = new Punto(x, y);
                     Circulo circulo = new Circulo(centro, radio);
+                    registroFiguras.add(circulo);
 
                     System.out.println("Area del Circulo: " + circulo.calcularArea());
                     System.out.println("Perimetro del Circulo: " + circulo.calcularPerimetro());
@@ -89,6 +95,7 @@ public class Main {
                     scanner.nextLine();
 
                     Piramide piramide = new Piramide(puntosPerimetro, alturaPiramide);
+                    registroFiguras.add(piramide);
 
                     System.out.println("Area de la Piramide: " + piramide.calcularArea());
                     System.out.println("Perimetro de la Piramide: " + piramide.calcularPerimetro());
@@ -107,6 +114,7 @@ public class Main {
                     scanner.nextLine();
                     Punto punto02 = new Punto(e, f);
                     Cubo cubo = new Cubo(punto01, punto02);
+                    registroFiguras.add(cubo);
                     System.out.println("Area del Cubo: " + cubo.calcularArea());
                     System.out.println("Perimetro del Cubo: " + cubo.calcularPerimetro());
                     System.out.println("Volumen del Cubo: " + cubo.calcularVolumen());
@@ -124,6 +132,7 @@ public class Main {
                     scanner.nextLine();
 
                     Esfera esfera = new Esfera(centro01,radio01);
+                    registroFiguras.add(esfera);
 
                     System.out.println("Area de la Esfera: " + esfera.calcularArea());
                     System.out.println("Perimetro de la Esfera: " + esfera.calcularPerimetro());
@@ -132,6 +141,18 @@ public class Main {
 
                     break;
                 case "7":
+                    System.out.println("Registro de Figuras:");
+
+                    for (Figura figura : registroFiguras) {
+                        System.out.println(figura.getClass().getSimpleName());
+                        System.out.println("Area: " + figura.calcularArea());
+                        if (figura instanceof Figura) {
+                            Figura figura01 = (Figura) figura;
+                            System.out.println("Perimetro: " + figura01.calcularPerimetro());
+                        }
+                        System.out.println();
+                    }
+                case "8":
                     System.out.println("Fin del codigo");
                     break;
 
@@ -140,7 +161,7 @@ public class Main {
                     System.out.println();
                     break;
             }
-        } while (!opcion.equals("7"));
+        } while (!opcion.equals("8"));
 
         scanner.close();
     }
