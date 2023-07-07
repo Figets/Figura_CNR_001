@@ -1,4 +1,4 @@
-abstract public class Cuadrado extends Figura {
+public class Cuadrado extends Figura {
     public Punto punto1;
     public Punto punto2;
 

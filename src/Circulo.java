@@ -1,4 +1,4 @@
-abstract public class Circulo extends Figura {
+public class Circulo extends Figura {
 
     private Punto centro;
     private double radio;
@@ -6,6 +6,10 @@ abstract public class Circulo extends Figura {
     public Circulo(Punto centro, double radio) {
         this.centro = centro;
         this.radio = radio;
+    }
+
+    public double getRadio() {
+        return radio;
     }
 
     @Override
